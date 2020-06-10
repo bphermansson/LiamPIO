@@ -25,7 +25,7 @@
 
 class ERROR {
   public:
-    ERROR(MYDISPLAY* display_, int led_pin_, CONTROLLER* Mower_);
+    ERROR(int led_pin_, CONTROLLER* Mower_);
 
     String errorMessage(int error_number);
     void flag(int error_number);

@@ -4,6 +4,7 @@
 #include "SetupDebug.h"
 #include "Arduino.h"
 #include "BWFSensor.h"
+#include "Liam.h"
 
 /* INSTRUCTIONS
  * PLACE THIS FILE IN THE LIAM FOLDER. YOU NEED TO MODIDFY THE ORIGINAL CONTENT TO MAKE THIS WORK.
@@ -56,6 +57,7 @@ void connectedLiam() {
   }
 
   //BWF Sensors
+  /*
   if (!Sensor.isOutOfBounds(0)) mowerData.leftBWF = 1;      //Sensor is inside
   else mowerData.leftBWF = 0;                               //Sensor is outside
 
@@ -64,14 +66,13 @@ void connectedLiam() {
 
   if (mowerData.leftBWF == 1 || mowerData.rightBWF == 1) mowerData.insideCable = true;
   else mowerData.insideCable = false;
-
+  */
   //Format activity if none is reported from Liam
   if (mowerData.activity == "") mowerData.activity = '6';
   //Print for debugging
   Serial.println("Activity: " + mowerData.activity);
   Serial.println("SoCString: " + mowerData.SoCString);                          //State of Charge, battery level
   Serial.println("SoC Float: " + String(mowerData.SoC));                          //State of Charge, battery level
-  Serial.println("Inside Cable: " + String(mowerData.insideCable));
   connectedSend();                                                        //Send data
 } //ENd request event
 

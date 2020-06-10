@@ -11,12 +11,11 @@
 #include "SetupDebug.h"
 #include "Definition.h"
 
-SETUPDEBUG::SETUPDEBUG(CONTROLLER* controller, WHEELMOTOR* left, WHEELMOTOR* right, CUTTERMOTOR* cut, BWFSENSOR* bwf, MOTIONSENSOR* comp, BATTERY* batt) {
+SETUPDEBUG::SETUPDEBUG(CONTROLLER* controller, WHEELMOTOR* left, WHEELMOTOR* right, CUTTERMOTOR* cut, MOTIONSENSOR* comp, BATTERY* batt) {
   mower = controller;
   leftMotor = left;
   rightMotor = right;
   cutter = cut;
-  sensor = bwf;
   compass = comp;
   battery = batt;
 }
@@ -129,7 +128,6 @@ void SETUPDEBUG::printHelp() {
   Serial.println(F("R = Right Wheel motor on/off"));
   Serial.println(F("9 = Turn 90 degrees right"));
   Serial.println(F("C = Cutter motor on/off"));
-  Serial.println(F("S = test BWF Sensor"));
   Serial.println(F("G = test Gyro/Compass/Accelerometer"));
   Serial.println(F("D = turn LED on/off"));
   Serial.println(F("T = make a 10 second test run"));
@@ -194,30 +192,6 @@ void SETUPDEBUG::togglewheelRight() {
   }
 }
 
-void SETUPDEBUG::getBwfSignals() {
-  Serial.println(F("-------- Testing Sensors 0 -> "));
-  Serial.println(NUMBER_OF_SENSORS - 1);
-  Serial.println(F(" --------"));
-
-  sensor->SetManualSensorSelect(true);
-  for (int i=0; i < NUMBER_OF_SENSORS; i++) {
-
-    sensor->select(i);
-    delay(1000);
-    Serial.print(i);
-    Serial.print(F(": "));
-    sensor->printSignal();
-    Serial.print(F(" in:"));
-    Serial.print(sensor->isInside(i));
-    Serial.print(F(" out:"));
-    Serial.print(sensor->isOutside(i));
-    Serial.println();
-  }
-  sensor->SetManualSensorSelect(false);
-
-  Serial.println(F("Sensor test completed"));
-}
-
 void SETUPDEBUG::toggleCutterMotor() {
   if (cutter_motor_is_on) {
     Serial.println(F("Ramping down cutter"));
@@ -244,19 +218,15 @@ void SETUPDEBUG::toggleCutterMotor() {
 
 void SETUPDEBUG::testRun() {
   Serial.println(F("Test run"));
-  
-  if (sensor->isOutOfBounds(0)||sensor->isOutOfBounds(1)) {
-    Serial.println("Out of bounds");  
-  }
-  for (int i=0; i<100; i++) {
-    //sensor->select(0);
-    delay(100);
-    rightMotor->setSpeed((!sensor->isOutOfBounds(0)?100:-100));
 
-//    sensor->select(1);
-    delay(100);
-    leftMotor->setSpeed((!sensor->isOutOfBounds(1)?100:-100));
-  }
+  rightMotor->setSpeed(100);
+  delay(100);
+  leftMotor->setSpeed(100);
+  delay(1000);
+  rightMotor->setSpeed(30);
+  delay(100);
+  leftMotor->setSpeed(-30);
+  delay(1000);
   leftMotor->setSpeed(0);
   rightMotor->setSpeed(0);
   Serial.println(F("Test run ended"));

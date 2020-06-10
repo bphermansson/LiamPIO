@@ -10,8 +10,7 @@
 
 #include "Error.h"
 
-ERROR::ERROR(MYDISPLAY* display_, int led_pin_, CONTROLLER* Mower_) {
-  display = display_;
+ERROR::ERROR(int led_pin_, CONTROLLER* Mower_) {
   led_pin = led_pin_;
   Mower = Mower_;
 }

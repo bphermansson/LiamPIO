@@ -16,16 +16,16 @@ extern long time_at_turning;
 
 /** Specific constructor.
 */
-CONTROLLER::CONTROLLER(WHEELMOTOR* left, WHEELMOTOR* right, CUTTERMOTOR* cut, BWFSENSOR* bwf, MOTIONSENSOR* comp) {
+//CONTROLLER::CONTROLLER(WHEELMOTOR* left, WHEELMOTOR* right, CUTTERMOTOR* cut, BWFSENSOR* bwf, MOTIONSENSOR* comp) {
+CONTROLLER::CONTROLLER(WHEELMOTOR* left, WHEELMOTOR* right, CUTTERMOTOR* cut, MOTIONSENSOR* comp) {  
   leftMotor = left;
   rightMotor = right;
   cutter = cut;
-  sensor = bwf;
+  //sensor = bwf;
   compass = comp;
   default_dir_fwd = 1;
   balance = 0;
 }
-
 
 boolean CONTROLLER::allSensorsAreOutside() {
 

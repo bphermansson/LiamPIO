@@ -21,8 +21,7 @@
 
 class CONTROLLER {
   public:
-    CONTROLLER(WHEELMOTOR* left, WHEELMOTOR* right, CUTTERMOTOR* cut, BWFSENSOR* bwf, MOTIONSENSOR* comp);
-
+    CONTROLLER(WHEELMOTOR* left, WHEELMOTOR* right, CUTTERMOTOR* cut, MOTIONSENSOR* comp);
     //
     int turnToReleaseLeft(int degrees);
     int turnToReleaseRight(int degrees);
