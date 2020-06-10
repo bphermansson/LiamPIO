@@ -1,47 +1,4 @@
-/*
- Liam - DIY Robot Lawn Mower
 
-Using an Arduin Uno
-
- ======================
-  Licensed under GPLv3
- ======================
-*/
-
-/*
-   Welcome to the Liam5_1 program
-   This program will control your mower and relies on a two coil
-   configuration (0 and 1) with an optional (2).
-
-   The mower is assumed to be rear wheel driven and have three
-   boundary wire reciever coils in the following configuration
-
-    wheel
-    ----------------
-   |      (0) |
-   |(2)           |  ----> Mowing direction
-   |      (1) |
-    ----------------
-  wheel
-
-  Most of the default values for your mower can be set in the
-  Definition.h file. Use this to configure your mower for best
-  performance.
-
-  (c) Jonas Forssell & team
-  Free to use for all.
-
-  Changes in this version
-  - Removed OzOLED Support for Arduino101 Compatibility
-  - -----------------------------------------------------------
-  - Ultrasound sensor bumper support            (Planned)
-  - More robust shutdown of mower if wheel overload   (Planned)
-  - Revised Error messages                (Planned)
-  - Support for OLED Display                (Planned)
-  - Signal sensitivity factor in Definition.h       (Planned)
-  - Slower mowing if cutter motor is using much current (Planned)
-  ---------------------------------------------------------------
-*/
 
 #include <Servo.h>
 #include <Wire.h>
@@ -599,7 +556,7 @@ void loop() {
 
   if ((millis() - lastUpdate) > interval) {   //Place this if statement to void loop
     mowerData.activity = state;
-    connectedLiam();
+    //connectedLiam();
   }
 
   if((state = SetupAndDebug.tryEnterSetupDebugMode(state)) == SETUP_DEBUG)

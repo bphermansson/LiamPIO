@@ -9,17 +9,18 @@
 */
 
 #include "myLcd.h"
-//#include <LiquidCrystal_I2C.h>
+#include <LiquidCrystal_I2C.h>
 #include <LiquidCrystal_PCF8574.h>
-//LiquidCrystal_PCF8574 lcd(0x27);  // set the LCD address to 0x27 for a 16 chars and 2 line display
+LiquidCrystal_PCF8574 lcd(0x27);  // set the LCD address to 0x27 for a 16 chars and 2 line display
 
   myLCD::myLCD(BATTERY* batt, WHEELMOTOR* left, WHEELMOTOR* right, CUTTERMOTOR* cut, BWFSENSOR* bwf, MOTIONSENSOR* comp, int* state) :
   MYDISPLAY(batt, left, right, cut, bwf, comp, state),
   //MYDISPLAY(batt, left, right, cut, bwf, comp),
   // You may need to modify this line to work with your LCD controller
   //lcd(LCD_I2C_ADDRESS, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE)
-  lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE)
-  //lcd(LCD_I2C_ADDRESS, 2, 1, 0, 4, 5, 6, 7, 3, 0)
+  //lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE)
+  lcd(LCD_I2C_ADDRESS, 20, 4)
+  
 {
 }
 
